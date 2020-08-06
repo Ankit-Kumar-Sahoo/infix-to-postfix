@@ -33,7 +33,7 @@ int main()
      
 }
 
-float solve(char * infix[20])
+float solve(char infix[20])
 {
     struct stack S1 ,S2;
     S1.tos=-1;
@@ -61,7 +61,7 @@ float solve(char * infix[20])
                 switch (ch)
                 {
                     case '$' :
-                        c = precedence(S1.tos--);
+                        c = precedence(ch);
                         if (c==3)
                         {
                             x = pop(&S1);
@@ -110,12 +110,12 @@ float solve(char * infix[20])
         
 
     }
-    
+    return S2.arr[S2.tos];
 
 }
 
 
-int preceence(ch)
+int precedence(char ch)
 {
     switch (ch)
         {
@@ -147,7 +147,7 @@ int empty(int x)
 void push(struct stack * p,float x)
 {
     
-    if(p->tos==4)
+    if(p->tos==19)
         {
             printf("\nSTACK OVERFLOW\n");
             return;
@@ -173,6 +173,17 @@ float pop(struct stack * p)
 }
 
 
+int isoprnd(char ch)
+{
+    if (ch>='0' && ch<='9')
+        {
+            return 1;
+        }
 
+    else
+        {
+            return 0;
+        }
+}
 
 
